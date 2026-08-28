@@ -2,11 +2,11 @@
   "name": "affiliate-iphone-demo",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://szentebalint.github.io/affiliate-iphone-demo/",
+  "homepage": "https://szentebalint.github.io/meeting/",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc && vite build --base=/affiliate-iphone-demo/",
+    "build": "tsc && vite build --base=/meeting/",
     "preview": "vite preview --host 127.0.0.1",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist -b gh-pages -m \"Deploy interactive prototype\""
