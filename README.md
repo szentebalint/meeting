@@ -11,3 +11,5 @@ Kattintható iPhone-demó a fő iskolai szervező operatív és affiliate folyam
 5. CRM-szinkron látványos szimulációja
 
 Az oldal mobilon teljes képernyős, asztali nézetben iPhone-keretben jelenik meg. Érintéses lapozást és nyílbillentyűs navigációt is támogat.
+
+A `main` ágra történő push automatikusan elindítja a GitHub Pages publikálását.
