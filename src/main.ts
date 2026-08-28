@@ -75,7 +75,7 @@ function shell() {
             <div class="view" id="view" aria-live="polite"></div>
             <div class="overlay-layer" id="overlay-layer"></div>
             <nav class="bottom-nav" aria-label="Fő navigáció">
-              <button data-route="home"><i class="nav-icon home-icon"></i><span>KEZDŐ</span></button>
+              <button data-route="home"><i class="nav-icon home-icon"></i><span>MENU</span></button>
               <button data-route="tickets"><i class="nav-icon ticket-icon"></i><span>JEGYEK</span></button>
               <button data-route="promoters"><i class="nav-icon people-icon"></i><span>PROMÓTEREK</span></button>
               <button data-route="finance"><i class="nav-icon reward-icon"></i><span>PÉNZEK</span></button>
