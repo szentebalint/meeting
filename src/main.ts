@@ -131,7 +131,7 @@ function pageHeader(kicker: string, title: string, subtitle = '', back = false, 
 function homeScreen() {
   return `
     <div class="content home-screen">
-      ${pageHeader('BÉKÁSMEGYERI GIMNÁZIUM · 12.D', 'SZIA, BÁLINT', 'Főszervezői áttekintés', false, true)}
+      ${pageHeader('VÁROSMAJORI GIMNÁZIUM · 12.B', 'SZIA, BÁLINT', 'Főszervezői áttekintés', false, true)}
       <article class="hero-stat">
         <span>ELADOTT JEGY</span>
         <strong>${soldTickets()} <small>/ 90</small></strong>
