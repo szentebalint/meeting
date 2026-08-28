@@ -2,13 +2,17 @@
   "name": "affiliate-iphone-demo",
   "private": true,
   "version": "1.0.0",
+  "homepage": "https://szentebalint.github.io/affiliate-iphone-demo/",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc && vite build --base=/affiliate-iphone-demo/",
-    "preview": "vite preview --host 127.0.0.1"
+    "preview": "vite preview --host 127.0.0.1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -b gh-pages -m \"Deploy interactive prototype\""
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "typescript": "^5.9.2",
     "vite": "^7.1.3"
   }

@@ -12,4 +12,4 @@ Kattintható iPhone-demó a fő iskolai szervező operatív és affiliate folyam
 
 Az oldal mobilon teljes képernyős, asztali nézetben iPhone-keretben jelenik meg. Érintéses lapozást és nyílbillentyűs navigációt is támogat.
 
-A `main` ágra történő push automatikusan elindítja a GitHub Pages publikálását.
+A GitHub Pages publikálása a `npm run deploy` paranccsal indítható. Ez automatikusan elkészíti a production buildet, majd a `dist` tartalmát a `gh-pages` ágra küldi.
