@@ -123,7 +123,7 @@ function pageHeader(kicker: string, title: string, subtitle = '', back = false, 
   return `
     <header class="page-header ${back ? 'with-back' : ''}">
       ${back ? '<button class="back-button" data-action="back" aria-label="Vissza">‹</button>' : ''}
-      <div><div class="header-line"><p class="kicker">${kicker}</p>${crm ? '<span class="crm-badge"><i></i>CRM ONLINE</span>' : ''}</div><h2>${title}</h2>${subtitle ? `<p class="subtitle">${subtitle}</p>` : ''}</div>
+      <div><div class="header-line"><p class="kicker">${kicker}</p>${crm ? '<span class="crm-badge"><i></i>ONLINE</span>' : ''}</div><h2>${title}</h2>${subtitle ? `<p class="subtitle">${subtitle}</p>` : ''}</div>
     </header>
   `
 }
@@ -168,7 +168,7 @@ function ticketsScreen() {
       <div class="compact-list">
         ${promoters.map((item) => `<button data-route="promoters"><span><b>${item.name} · ${item.className}</b><small>${item.sold}/${item.issued} jegy</small></span><strong>${formatMoney(item.collected)}</strong></button>`).join('')}
       </div>
-      <button class="primary full-width crm-action" data-action="sync">NAPI ZÁRÁS KÜLDÉSE A CRM-BE</button>
+      <button class="primary full-width crm-action" data-action="sync">NAPI ZÁRÁS KÜLDÉSE</button>
     </div>
   `
 }
@@ -197,7 +197,7 @@ function affiliatesScreen() {
     <div class="content affiliates-screen">
       ${pageHeader('PARTNERAJÁNLÁS', 'MÁS ISKOLÁK', 'Oszd meg a saját linkedet vagy kódodat egy másik iskola leendő főszervezőjével.', true, true)}
       <article class="referral-code"><span>SAJÁT AJÁNLÓI KÓD</span><div><strong>BALINT-12D</strong><button data-action="copy-code">MÁSOLÁS</button></div><small>Ha ezzel a kóddal vagy linkkel szerződnek, 25 000 Ft jutalék jár.</small></article>
-      <article class="affiliate-explainer"><b>A SZERZŐDÉS UTÁN JÁR A JUTALÉK</b><p>A regisztráció és az egyeztetés még csak várható tétel. A 25 000 Ft akkor kerül jóváírásra, amikor a másik főszervező szerződése a CRM-ben sikeres.</p></article>
+      <article class="affiliate-explainer"><b>A SZERZŐDÉS UTÁN JÁR A JUTALÉK</b><p>A regisztráció és az egyeztetés még csak várható tétel. A 25 000 Ft akkor kerül jóváírásra, amikor a másik főszervező szerződése sikeres.</p></article>
       <div class="affiliate-list">
         ${affiliates.map((item) => `<article><span><b>${item.school}</b><small>${item.contact}<br />${item.relation}</small></span><div><em class="status status-${slug(item.status)}">${item.status.toUpperCase()}</em><strong>${item.status === 'Szerződött' ? formatMoney(item.commission) : `várható ${formatMoney(item.commission)}`}</strong></div></article>`).join('')}
       </div>
@@ -219,7 +219,7 @@ function financeScreen() {
         <div><span><b>Főszervezői jutalom</b><small>${soldTickets()} eladott jegy után</small></span><strong>${formatMoney(organizerReward)}</strong></div>
         <button data-route="affiliates"><span><b>Partnerajánlási jutalék</b><small>1 szerződött · kód: BALINT-12D</small></span><strong>${formatMoney(affiliateCommission)}</strong></button>
       </div>
-      <article class="condition-card"><span>KIFIZETÉS FELTÉTELE</span><p>Jegyelszámolás lezárva és a partneriskola szerződése CRM-ben visszaigazolva.</p></article>
+      <article class="condition-card"><span>KIFIZETÉS FELTÉTELE</span><p>Jegyelszámolás lezárva és a partneriskola szerződése visszaigazolva.</p></article>
       <button class="secondary full-width details-toggle" data-action="finance-details">KIFIZETÉSI ADATOK ${financeDetailsOpen ? '−' : '+'}</button>
       ${financeDetailsOpen ? '<div class="payout-details"><div><span>Következő elszámolás</span><b>szept. 10.</b></div><div><span>Kifizetési mód</span><b>banki átutalás</b></div><div><span>CRM állapot</span><b>szinkronizálva</b></div></div>' : ''}
     </div>
@@ -267,7 +267,7 @@ function closeSheet() {
 }
 
 function addPromoterSheet() {
-  openSheet(`<p class="kicker">ÚJ PROMÓTER</p><h3>Csapattag hozzáadása</h3><form id="promoter-form"><label>NÉV<input name="name" required placeholder="Promóter neve" /></label><label>OSZTÁLY<input name="className" required placeholder="pl. 12.D" /></label><label>KIADOTT JEGY<input name="issued" required type="number" value="10" min="1" max="30" /></label><button class="primary full-width" type="submit">HOZZÁADÁS ÉS CRM-SZINKRON</button></form>`)
+  openSheet(`<p class="kicker">ÚJ PROMÓTER</p><h3>Csapattag hozzáadása</h3><form id="promoter-form"><label>NÉV<input name="name" required placeholder="Promóter neve" /></label><label>OSZTÁLY<input name="className" required placeholder="pl. 12.D" /></label><label>KIADOTT JEGY<input name="issued" required type="number" value="10" min="1" max="30" /></label><button class="primary full-width" type="submit">HOZZÁADÁS ÉS SZINKRON</button></form>`)
   bindForms()
 }
 
@@ -288,14 +288,14 @@ function bindForms() {
     const data = new FormData(event.currentTarget as HTMLFormElement)
     promoters.push({ id: Date.now(), name: String(data.get('name')), className: String(data.get('className')), issued: Number(data.get('issued')), sold: 0, collected: 0 })
     closeSheet()
-    window.setTimeout(() => { render(false); announce('Promóter CRM-be mentve') }, 280)
+    window.setTimeout(() => { render(false); announce('Promóter mentve') }, 280)
   })
   document.querySelector<HTMLFormElement>('#affiliate-form')?.addEventListener('submit', (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget as HTMLFormElement)
     affiliates.unshift({ id: Date.now(), school: String(data.get('school')), contact: String(data.get('contact')), relation: String(data.get('relation')), code: 'BALINT-12D', status: 'Bemutatva', commission: 25000 })
     closeSheet()
-    window.setTimeout(() => { render(false); announce('Ajánlás CRM-be küldve') }, 280)
+    window.setTimeout(() => { render(false); announce('Ajánlás elküldve') }, 280)
   })
 }
 
@@ -307,14 +307,14 @@ app.addEventListener('click', async (event) => {
   const action = target.dataset.action
   if (action === 'restart') { promoterFilter = 'Mind'; financeDetailsOpen = false; go('home', 'back'); announce('Demó újraindítva') }
   if (action === 'back') go(previousRoute, 'back')
-  if (action === 'sync') announce('Napi zárás CRM-be küldve')
+  if (action === 'sync') announce('Napi zárás sikeresen elküldve')
   if (action === 'copy-code') {
     try { await navigator.clipboard.writeText('BALINT-12D'); announce('Ajánlói kód másolva') } catch { announce('Kód: BALINT-12D') }
   }
   if (action === 'add-promoter') addPromoterSheet()
   if (action === 'add-affiliate') addAffiliateSheet()
   if (action === 'promoter-more') promoterDetails(Number(target.dataset.id))
-  if (action === 'settle') { closeSheet(); window.setTimeout(() => announce('Elszámolás CRM-be mentve'), 280) }
+  if (action === 'settle') { closeSheet(); window.setTimeout(() => announce('Elszámolás sikeresen mentve'), 280) }
   if (action === 'close-sheet') closeSheet()
   if (action === 'finance-details') { financeDetailsOpen = !financeDetailsOpen; render(false) }
   const filter = target.dataset.filter as typeof promoterFilter | undefined
